@@ -6,12 +6,29 @@
   <title>The Love I Carry Within Me</title>
   <link rel="stylesheet" href="accept.css" />
 </head>
+  <script>
+  const audio = document.getElementById('bg-audio');
+  const popup = document.getElementById('audio-popup');
+  const btn = document.getElementById('start-music');
+
+  btn.addEventListener('click', () => {
+    audio.play().then(() => {
+      popup.style.display = "none";
+    });
+  });
+</script>
+
 <body>
   <!-- Audio + controls -->
   <div class="audio-controls">
     <audio id="bg-audio" loop>
-    <source src="index-song.mp3" type="audio/mpeg">
+  <source src="index-song.mp3" type="audio/mpeg">
 </audio>
+<div id="audio-popup">
+  <p>Tap to Play Music 🎵</p>
+  <button id="start-music">Play</button>
+</div>
+
 
     <button id="play-pause" aria-label="Play background music">Play ♫</button>
   </div>
@@ -80,4 +97,5 @@
   
 </body>
 </html>
+
 
