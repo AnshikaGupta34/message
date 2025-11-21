@@ -33,15 +33,24 @@
     <div class="audio-wrap">
      <!-- Story page audio -->
 <audio id="story-audio" loop>
-    <source src="love-song.mp3" type="audio/mpeg">
+  <source src="story-song.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Tap to enable song popup -->
 <div id="story-audio-popup">
-    <p>Tap to Play Music 🎵</p>
-    <button id="start-story-music">Play</button>
+  <p>Tap to Play Music 🎵</p>
+  <button id="start-story-music">Play</button>
 </div>
+<script>
+  const sAudio = document.getElementById('story-audio');
+  const sPopup = document.getElementById('story-audio-popup');
+  const sBtn = document.getElementById('start-story-music');
 
+  sBtn.addEventListener('click', () => {
+    sAudio.play().then(() => {
+      sPopup.style.display = "none";
+    });
+  });
+</script>
 
         
     </div>
@@ -114,6 +123,7 @@
   </script>
 </body>
 </html>
+
 
 
 
