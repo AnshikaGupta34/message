@@ -148,4 +148,36 @@ body::before {
 #titlecontent p {
     color: black !important;
 }
+/* Popup for enabling audio */
+#story-audio-popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(20, 20, 20, 0.8);
+  padding: 20px 30px;
+  border-radius: 14px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  color: white;
+  z-index: 3000;
+}
+
+#story-audio-popup button {
+  margin-top: 12px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #c045ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+}
+
+#story-audio-popup.hidden {
+  display: none;
+}
+
+
 
