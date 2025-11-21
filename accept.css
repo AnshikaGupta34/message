@@ -1,0 +1,179 @@
+/* accept.css - updated responsive styling and flip card + controls */
+
+/* import a friendlier script font for headings */
+@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&family=Roboto:wght@300;400;700&display=swap');
+
+:root{
+  --accent: #ff2b6d;
+  --muted: rgba(245,245,220,0.35);
+  --card-bg: rgba(255,255,255,0.06);
+  --glass: rgba(255,255,255,0.08);
+  --text: #ff0202;
+}
+
+/* Reset / base */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+body {
+    margin: 0;
+    height: 100vh;
+    background: url("/mnt/data/extracted_bg/job297-ploy-08a-purple-01.jpg") center/cover no-repeat fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 0, 100, 0.22),
+        rgba(120, 0, 255, 0.22),
+        rgba(255, 80, 180, 0.22)
+    );
+    animation: moveGradient 12s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+/* keep your existing elements above the overlay */
+.container, .page, .audio-controls, #audio-popup {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes moveGradient {
+    0% {
+        opacity: 0.6;
+        transform: translateX(-8%) translateY(-8%);
+    }
+    100% {
+        opacity: 0.9;
+        transform: translateX(8%) translateY(8%);
+    }
+}
+
+
+/* Audio control container (top-right) */
+.audio-controls{
+  position: fixed;
+  right: 18px;
+  top: 18px;
+  z-index: 100;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+#audio-toggle, #play-pause{
+  border: none;
+  background: var(--glass);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+}
+
+/* Main page container */
+.page{width:100%;max-width:920px;display:flex;align-items:center;justify-content:center}
+.container{
+  width: min(720px, 94%);
+  border-radius: 16px;
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.18));
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  color: #fff;
+  position: relative;
+  min-height: 260px;
+}
+
+/* Headline + text */
+.headline{
+  font-family: 'Lily Script One', cursive;
+  font-size: clamp(28px, 4vw, 56px);
+  margin: 0 0 6px 0;
+  color: var(--accent);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+
+.lead{
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: #fff7f7;
+  margin: 6px 0 18px 0;
+}
+
+/* Row with card and button */
+.card-row{
+  display:flex;
+  gap: 18px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* Flip card */
+.flip-card{
+  width: 150px;
+  height: 90px;
+  perspective: 700px;
+  border-radius: 10px;
+  outline: none;
+}
+.flip-card-inner{
+  width:100%;height:100%;
+  transition: transform 0.9s cubic-bezier(.2,.9,.3,1);
+  transform-style: preserve-3d;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+}
+.flip-card:focus .flip-card-inner,
+.flip-card.flipped .flip-card-inner,
+.flip-card:hover .flip-card-inner{
+  transform: rotateY(-180deg);
+}
+.flip-card-front, .flip-card-back{
+  position:absolute;
+  width:150px;height:90px;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+.flip-card-front{
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  color: #fff;
+}
+.flip-card-back{
+  background: linear-gradient(180deg, rgba(255,43,109,0.95), rgba(255,43,109,0.85));
+  transform: rotateY(180deg);
+  color: white;
+}
+
+/* Read story button */
+.btn-read{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(90deg,var(--accent), #ff7b9c);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(255,43,109,0.15);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn-read:hover{ transform: translateY(-4px); box-shadow: 0 18px 30px rgba(255,43,109,0.14); }
+
+/* small credit text */
+.credit{ margin-top: 18px; font-size: 14px; color: rgba(255,255,255,0.8) }
+
+/* Responsive behavior */
+@media (max-width:520px){
+  .card-row{gap:12px}
+  .flip-card{width:120px;height:80px}
+  .btn-read{padding:10px 14px}
+  .container{padding:20px}
+}

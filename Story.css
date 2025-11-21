@@ -1,0 +1,151 @@
+/* Story.css - cleaned up + smoother scroll + responsive */
+
+/* reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html, body {
+    height: 100%;
+    background: url("/mnt/data/extracted_bg/job297-ploy-08a-purple-01.jpg") center/cover no-repeat fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 0, 100, 0.22),
+        rgba(120, 0, 255, 0.22),
+        rgba(255, 80, 180, 0.22)
+    );
+    animation: moveGradientStory 16s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+/* keep scrolling text ABOVE overlay */
+#titles, #titlecontent, .story-header, #start {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes moveGradientStory {
+    0% {
+        opacity: 0.55;
+        transform: translateX(-6%) translateY(-6%);
+    }
+    100% {
+        opacity: 0.85;
+        transform: translateX(6%) translateY(6%);
+    }
+}
+
+
+/* intro text */
+#start{
+  width:min(88%,760px);
+  margin: 6vh auto 0 auto;
+  font-size:1rem;
+  text-align:center;
+  color:#4ee;
+  opacity:1;
+  animation: intro 3s ease-out forwards;
+}
+
+/* keyframes for intro */
+@keyframes intro{
+  0%{opacity:0; transform: translateY(10px);}
+  60%{opacity:1; transform: translateY(0);}
+  100%{opacity:1;}
+}
+
+/* main title */
+.center-title{
+  text-align:center;
+  margin-top: 6vh;
+  font-family: 'Poor Story', cursive;
+  font-size: clamp(28px, 6vw, 64px);
+  color: #ffb86b;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.9);
+}
+
+/* header (back button + audio) */
+.story-header{
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index: 120;
+  pointer-events: auto;
+}
+.back{
+  display:inline-block;
+  text-decoration:none;
+  color:#fff;
+  background: rgba(255,255,255,0.04);
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:700;
+}
+.audio-wrap{ margin-left:auto; }
+
+/* large scroll area */
+#titles{
+  width: min(820px, 92%);
+  margin: 0 auto;
+  padding: 8vh 16px 40vh 16px;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* the content that scrolls upward */
+#titlecontent{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 120%;
+  font-size: clamp(16px, 2.4vw, 20px);
+  line-height: 1.6;
+  color: #fff;
+  padding: 0 6%;
+  animation: scroll 110s linear 5s infinite;
+  will-change: top;
+}
+
+/* author center */
+.author{
+  text-align:center;
+  font-weight:700;
+  color: #ff6b81;
+  margin-bottom: 10px;
+}
+
+/* centers and small text */
+.center { text-align:center; }
+.small { font-size:0.9rem; color:#e6e6e6;}
+
+/* scroll animation (slower and smoother than original) */
+@keyframes scroll{
+  0% { top: 100%; }
+  100%{ top: -170%; }
+}
+
+/* allow users to stop animation on hover/focus for readability */
+#titlecontent:hover, #titlecontent:focus-within { animation-play-state: paused; cursor:grab; }
+
+/* Responsiveness */
+@media (max-width:720px){
+  #titlecontent{ font-size: 16px; padding: 0 8%; animation-duration:140s; }
+  .center-title{ margin-top:3vh; font-size: clamp(24px, 8vw, 42px); }
+  .back{ padding:6px 10px; }
+}
+/* Make only story paragraphs black */
+#titlecontent p {
+    color: black !important;
+}
+

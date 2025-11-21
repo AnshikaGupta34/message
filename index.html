@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Love I Carry Within Me</title>
+  <link rel="stylesheet" href="accept.css" />
+</head>
+<body>
+  <!-- Audio + controls -->
+  <div class="audio-controls">
+    <audio id="bg-audio" loop>
+      <source src="/mnt/data/audio.mpeg" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <button id="play-pause" aria-label="Play background music">Play ♫</button>
+  </div>
+
+  <main class="page">
+    <div class="container" role="main" aria-labelledby="headline">
+      <h1 id="headline" class="headline">YOU know what?</h1>
+
+      <p class="lead">
+        Whenever I look at you, suddenly I forget all the things.
+      </p>
+
+      <div class="card-row">
+        <!-- Decorative flip card -->
+        <div class="flip-card" tabindex="0" aria-hidden="false" title="Focus and press Enter or click to flip">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <p class="small">A little secret</p>
+            </div>
+            <div class="flip-card-back">
+              <p class="small">Just read the story</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visible Read Story button -->
+        <a class="btn-read" href="Story.html">Read the Story →</a>
+      </div>
+
+      <p class="credit">— Written with ♥ by Anshika</p>
+    </div>
+  </main>
+
+  <script>
+    const audio = document.getElementById('bg-audio');
+    const btn = document.getElementById('play-pause');
+  
+    let userInteracted = false;
+  
+    // First user click → start music
+    function enableAudio() {
+      if (!userInteracted) {
+        userInteracted = true;
+        audio.play().then(() => {
+          btn.textContent = "Pause ♫";
+        });
+        document.removeEventListener('click', enableAudio);
+      }
+    }
+  
+    // Wait for any user click anywhere on the page
+    document.addEventListener('click', enableAudio);
+  
+    // Manual play/pause button
+    btn.addEventListener('click', (event) => {
+      event.stopPropagation(); // prevents re-triggering the enableAudio click
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "Pause ♫";
+      } else {
+        audio.pause();
+        btn.textContent = "Play ♫";
+      }
+    });
+  </script>
+  
+</body>
+</html>

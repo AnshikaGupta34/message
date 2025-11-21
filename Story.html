@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Love I Carry Within Me</title>
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poor+Story&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="Story.css" />
+</head>
+<body>
+  <header class="story-header">
+    <a class="back" href="index.html" aria-label="Back to home">← Back</a>
+
+    <div class="audio-wrap">
+        <audio id="story-audio" controls>
+            <source src="/mnt/data/WhatsApp Audio 2025-11-21 at 04.39.31.mpeg" type="audio/mpeg">
+        </audio>
+        
+    </div>
+  </header>
+
+  <main id="titles" role="main" aria-labelledby="story-title">
+    <p id="start" class="intro">A long time ago we met... now this time…</p>
+
+    <h1 id="story-title" class="center-title">By luck or by coincidence</h1>
+
+    <div id="titlecontent">
+        <p class="center">@Anshika</p>
+    
+        <p>
+            My Love,<br><br>
+            Kabhi-kabhi main baithkar hamare baare mein sochti hoon… 
+            kitna ajeeb hai ki do log itni door hokar bhi ek-dusre ke itne 
+            kareeb ho sakte hain. Door rehna aasaan nahi hota, par tumse 
+            pyaar karna kabhi mushkil nahi laga. Har din, chahe hum kitni 
+            bhi door hon, tum mujhe care, value aur samajhne ka ehsaas 
+            dete ho.
+        </p>
+    
+        <p>
+            Main tumhe bohot miss karti hoon—tumhari awaaz,
+            tumhari presence—par mujhe yeh bhi pasand hai ki hum har message,
+            call, aur har “I miss you” ke saath ek-dusre se jude rehte hain. 
+            Tumne mujhe dikhaya hai ki pyaar sirf saath rehne ka naam nahi, 
+            balki har din ek-dusre ko chunne ka naam hai, chahe kitni bhi 
+            doori ho. Aur main tumhe hamesha choose karti hoon.
+        </p>
+    
+        <p>
+            Shukriya itne patient rehne ke liye, mujhe mere har mood mein 
+            pyaar karne ke liye, aur mujhe special feel karwane ke liye jab 
+            tum yahan physically nahi ho. Tum mujhe motivate karte ho, comfort 
+            dete ho, aur ek secure feeling dete ho is noisy duniya mein. 
+            Jab main apne future ke baare mein sochti hoon, har jagah tum hi 
+            dikhte ho—tumhari smile, tumhari laugh, tumhara haath mere haath 
+            mein, bina kisi distance ke.
+        </p>
+    
+        <p>
+             tum mere favourite person ho, meri 
+            constant thought, meri peace, aur meri khushi. Door rehkar bhi 
+            tumhara pyaar mere liye ghar jaisa lagta hai.
+        </p>
+    
+        <p>
+            Main tumse shabdon se zyada, doori se zyada, aur sabse zyada 
+            pyaar karti hoon.  
+        </p>
+    
+        <p class="center small">
+             Tumhari madam jii. 💜
+        </p>
+    </div>
+    
+  </main>
+
+  <script>
+    // Nothing required here for scrolling; CSS animation handles the smooth scroll.
+    // But add a small friendly accessibility script to pause motion if user prefers reduced motion.
+    const titleContent = document.getElementById('titlecontent');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      // stop animation if user prefers reduced motion
+      titleContent.style.animation = 'none';
+    }
+  </script>
+</body>
+</html>
