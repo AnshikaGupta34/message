@@ -12,6 +12,20 @@
 
   <link rel="stylesheet" href="Story.css" />
 </head>
+  <script>
+  const storyAudio = document.getElementById('story-audio');
+  const storyPopup = document.getElementById('story-audio-popup');
+  const startStoryBtn = document.getElementById('start-story-music');
+
+  startStoryBtn.addEventListener('click', function () {
+    storyAudio.play().then(() => {
+      storyPopup.classList.add('hidden');
+    }).catch(err => {
+      console.error("Audio play failed:", err);
+    });
+  });
+</script>
+
 <body>
   <header class="story-header">
     <a class="back" href="index.html" aria-label="Back to home">← Back</a>
@@ -100,6 +114,7 @@
   </script>
 </body>
 </html>
+
 
 
 
