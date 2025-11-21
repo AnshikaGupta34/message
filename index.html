@@ -6,55 +6,39 @@
   <title>The Love I Carry Within Me</title>
   <link rel="stylesheet" href="accept.css" />
 </head>
-  <script>
-  const audio = document.getElementById('bg-audio');
-  const popup = document.getElementById('audio-popup');
-  const btn = document.getElementById('start-music');
-
-  btn.addEventListener('click', () => {
-    audio.play().then(() => {
-      popup.style.display = "none";
-    });
-  });
-</script>
 
 <body>
-  <!-- Audio + controls -->
+  <!-- Background audio -->
+  <audio id="bg-audio" loop>
+    <source src="index-song.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Popup to allow music -->
+  <div id="audio-popup">
+    <p>Tap to Play Music 🎵</p>
+    <button id="start-music">Play</button>
+  </div>
+
+  <!-- Manual play/pause button -->
   <div class="audio-controls">
-    <audio id="bg-audio" loop>
-  <source src="index-song.mp3" type="audio/mpeg">
-</audio>
-<div id="audio-popup">
-  <p>Tap to Play Music 🎵</p>
-  <button id="start-music">Play</button>
-</div>
-
-
     <button id="play-pause" aria-label="Play background music">Play ♫</button>
   </div>
 
   <main class="page">
     <div class="container" role="main" aria-labelledby="headline">
       <h1 id="headline" class="headline">YOU know what?</h1>
-
       <p class="lead">
         Whenever I look at you, suddenly I forget all the things.
       </p>
 
       <div class="card-row">
-        <!-- Decorative flip card -->
-        <div class="flip-card" tabindex="0" aria-hidden="false" title="Focus and press Enter or click to flip">
+        <div class="flip-card" tabindex="0">
           <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <p class="small">A little secret</p>
-            </div>
-            <div class="flip-card-back">
-              <p class="small">Just read the story</p>
-            </div>
+            <div class="flip-card-front"><p class="small">A little secret</p></div>
+            <div class="flip-card-back"><p class="small">Just read the story</p></div>
           </div>
         </div>
 
-        <!-- Visible Read Story button -->
         <a class="btn-read" href="Story.html">Read the Story →</a>
       </div>
 
@@ -62,40 +46,37 @@
     </div>
   </main>
 
+  <!-- ===================== MUSIC LOGIC ===================== -->
   <script>
     const audio = document.getElementById('bg-audio');
-    const btn = document.getElementById('play-pause');
-  
-    let userInteracted = false;
-  
-    // First user click → start music
-    function enableAudio() {
-      if (!userInteracted) {
-        userInteracted = true;
-        audio.play().then(() => {
-          btn.textContent = "Pause ♫";
-        });
-        document.removeEventListener('click', enableAudio);
-      }
-    }
-  
-    // Wait for any user click anywhere on the page
-    document.addEventListener('click', enableAudio);
-  
+    const popup = document.getElementById('audio-popup');
+    const startBtn = document.getElementById('start-music');
+    const playPause = document.getElementById('play-pause');
+    let isPlaying = false;
+
+    // Enable audio through popup
+    startBtn.addEventListener('click', () => {
+      audio.play().then(() => {
+        popup.style.display = "none";
+        playPause.textContent = "Pause ♫";
+        isPlaying = true;
+      });
+    });
+
     // Manual play/pause button
-    btn.addEventListener('click', (event) => {
-      event.stopPropagation(); // prevents re-triggering the enableAudio click
-      if (audio.paused) {
-        audio.play();
-        btn.textContent = "Pause ♫";
-      } else {
+    playPause.addEventListener('click', () => {
+      if (isPlaying) {
         audio.pause();
-        btn.textContent = "Play ♫";
+        playPause.textContent = "Play ♫";
+        isPlaying = false;
+      } else {
+        audio.play();
+        playPause.textContent = "Pause ♫";
+        isPlaying = true;
+        popup.style.display = "none"; // hide popup after manual play
       }
     });
   </script>
-  
+
 </body>
 </html>
-
-
